@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+ font-size: 14px;
+}
+.container .header {
+ font-size: 18px;
+}
+.container .shop-list {
+ list-style: none;
+ margin-left: -15px;
+}
+.container .shop-list li.item {
+ color: green;
+}
+.container .shop-list .item {
+  /* Explain why does this color not works, and how to fix make it work on 1st list */
+ color: blue;
+}
+
+.container .shop-list li.item:nth-child(even) {
+    background-color: #f0f0f0; /* 偶數行背景色 */
+  }
+
+
+.head {
+    display: flex;
+ 
+}
+.logo{
+    width: 40vw;
+    max-height: 50px;
+    overflow: hidden;
+}
+.logo img{
+    width: 100%;
+}
+.nav{
+    width: 60vw;
+    display: flex;
+    list-style-type:none
+}
+.hachi{
+    width: 50vw;
+}
+.hachi img{
+    width: 100%;
+}
+.maincontent{
+    display: flex;
+}
+.aside{
+    width: 50vw;
+}
+</style>
+<body>
+    <div class="container">
+        <div class="header">5/8 外出確認表</div>
+        <div class="content">
+        <ol class="shop-list">
+        <li class="item">麵包</li>
+        <li class="item">短袖衣服</li>
+        <li class="item">飲用水</li>
+        <li class="item">帳篷</li>
+        </ol>
+        <ul class="shop-list">
+        <li class="item">暈車藥</li>
+        <li class="item">感冒藥</li>
+        <li class="item">丹木斯</li>
+        <li class="item">咳嗽糖漿</li>
+        </ul>
+        </div>
+        <div class="footer">以上僅供參考</div>
+        </div>
+
+        <div>
+            <header class="head">
+                <figure class="logo">  <img src="./hachi.png"></figure>
+                <nav>
+                    <ul class="nav">
+                        <li><a href="#section1">Home</a></li>
+                        <li><a href="#section2">About</a></li>
+                        <li><a href="#section3">Products</a></li>
+                        <li><a href="#section4">Contact</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <main class="maincontent">
+                <figure class="hachi">
+                    <img src="./hachi.png">
+                </figure>
+                <aside class="aside">
+                    <section>item detail</section>
+                    <section>
+                        <ol>
+                            <li>item</li>
+                            <li>item</li>
+                            <li>item</li>
+                        </ol>
+                    </section>
+                </aside>
+            </main>
+            <footer> <p>&copy; 2024 Your Company Name. All Rights Reserved.</p></footer>
+            
+        </div>
+</body>
+<script>
+    const user = [
+        { firstName: 'John', lastName: 'Doe', customerID: '102', note: 'VIP', profession: 'engineer' },
+        { firstName: 'Jane', lastName: 'Smith', customerID: '101', note: '', profession: 'freelancer' },
+        { firstName: 'Alice', lastName: '', customerID: '103', note: 'new', profession: 'student' },
+        { firstName: 'Anna', lastName: '', customerID: '155', note: 'new', profession: 'systemAnalytics' },
+        { firstName: 'Cindy', lastName: '', customerID: '150', note: 'new', profession: 'productOwner' },
+        { firstName: 'Jessie', lastName: '', customerID: '150', note: 'new', profession: 'productOwner' }
+    ];
+    function sortUserName(user) {
+        user.forEach(element => {
+            let format = `${element.firstName}+${element.lastName}+${element.customerID}`
+            console.log('format',format);
+        });
+        
+
+        
+    }
+    sortUserName(user);
+    function sortByType(user) {
+        //(‘systemAnalytics’ > ‘engineer’ > ‘productOwner’ > ‘freelancer’ > ‘student’’)
+        //設定階層 ‘systemAnalytics’ == 5 ‘engineer’==4 ‘productOwner’==3 ‘freelancer’==2 ‘student’’==1
+        const professionOrder = {
+            'systemAnalytics': 5,
+            'engineer': 4,
+            'productOwner': 3,
+            'freelancer': 2,
+            'student': 1
+        };
+
+        const professionOrderreverse = {
+            5: 'systemAnalytics',
+            4:'engineer',
+            3:'productOwner',
+            2:'freelancer',
+            1:'student'
+        };
+
+        const newUserArray = user.map(person => {
+            return {
+                ...person,  
+                profession: professionOrder[person.profession] || 0 
+            };
+        });
+
+        newUserArray.sort((a, b) => {
+            return b.profession - a.profession;
+        });
+
+    
+        let userResult = newUserArray.map(person => {
+            return {
+                ...person,  
+                profession: professionOrderreverse[person.profession] 
+            };
+        });
+
+        console.log('userResult',userResult);
+        
+
+    }
+    sortByType(user);
+</script>
+<script>
+    let items = [1, 1, 1, 5, 2, 3, 4, 3, 3, 3, 3, 3, 3, 7, 8, 5, 4, 9, 0, 1, 3, 2, 6, 7, 5, 4, 4, 7, 8, 8, 0, 1, 2, 3, 1];
+
+    function getUniqueNumber (items) {
+
+        const uniqueItems = items.filter((item, index) => {
+            return items.indexOf(item) === index;
+        });
+
+        console.log(uniqueItems);
+        }
+
+    getUniqueNumber(items)
+</script>
+
+</html>
