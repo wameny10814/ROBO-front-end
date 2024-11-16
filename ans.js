@@ -12,18 +12,21 @@ Q1. Please follow the principle (‘firstName’ + ‘lastName’ + ‘customerI
 array and print it out.
 **/
 const user = [
-    { firstName: 'John', lastName: 'Doe', customerID: '102', note: 'VIP', profession: 'engineer' },
-    { firstName: 'Jane', lastName: 'Smith', customerID: '101', note: '', profession: 'freelancer' },
-    { firstName: 'Alice', lastName: '', customerID: '103', note: 'new', profession: 'student' }
+    { firstName: 'John', lastName: 'Doe', customerID: 102, note: 'VIP', profession: 'engineer' },
+    { firstName: 'Jane', lastName: 'Smith', customerID: 101, note: '', profession: 'freelancer' },
+    { firstName: 'Alice', lastName: '', customerID: 103, note: 'new', profession: 'student' }
   ];
-function sortUserName(user) {
+  const sortUserName = function(user) {
     user.forEach(element => {
-        let format = `${element.firstName}+${element.lastName}+${element.customerID}`
-        console.log('format',format);
-    });
-
-    
-}
+        let format = element.firstName;
+        if (element.lastName) {
+            format += '+' + element.lastName;
+        }
+        format += '+' + element.customerID;
+        console.log('format', format);
+        });
+};
+sortUserName(user);
 /**
 Q2. Please sort by ‘profession’ to follow the principle.
 (‘systemAnalytics’ > ‘engineer’ > ‘productOwner’ > ‘freelancer’ > ‘student’’)
@@ -167,78 +170,119 @@ consists of.
 stylesheet. **/
 /**
  * !important 最高 > inline style > id > classname & 偽類(:hover、:focus)、屬性選擇器( input[type=text]) > 元素選擇器 &  偽元素：p::first-letter { font-size: 20px; } 
+ * 
+ * 我習慣使用classname 做css選擇器，為保持文件整潔，不同component會做不同的.css檔，如是使用原生html css 便將css檔案另外寫，按照畫面由上而下的版面之順序設計css
  * **/
 7.
 /** Can you introducing some of Semantic HTML elements that you already know and how you
 used it ever, please make some example. **/
 /**
-Semantic HTML 稱為語意型標籤，帶有語意的標籤。對SEO友善，無障礙友善，以及便於開發者在看到HTML架構時更能夠快速理解
+Semantic HTML 稱為語意型標籤，帶有語意的標籤。對SEO友善，引擎更容易理解頁面結構和內容，無障礙友善， 閱讀器能更準確地向user描述網頁內容，以及便於開發者在看到HTML架構時更能夠快速理解
 個人使用經驗為
-<nav></nav> 網頁的導覽列
-<section></section> 特定大主題欄位
-<acticle></acticle> 獨立之主題欄位
-<figure></figure> 引用圖片欄位
-<form></form> 表單欄位
-<button></button> 按鈕
-<footer></footer> 通常表示網站版權所屬欄位
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#abc">Abc</a></li>
+        </ul>
+    </nav> 網頁的導覽列
+    <section>
+        <h3>Blog Post</h3>
+        <p>This is a blog post.</p>
+    </section> 特定大主題欄位
+    <article>
+        <h3>Blog Post</h3>
+        <p>This is a blog post.</p>
+    </article> 獨立之主題欄位
+    <figure>
+        <img src="./hachi.png" alt="A beautiful view">
+        <figcaption>Photo by Sunny Liu.</figcaption>
+    </figure> 引用圖片欄位
+    <form>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        <button type="submit">Sign Up</button> 按鈕
+    </form> 表單欄位
+
+    <footer>
+        <p>&copy; 2024 Sunny Liu.</p>
+    </footer> 通常表示網站版權所屬欄位
  * **/
 
 8.
 /** The photo below is a page structural layer, please according to SEO friendly rules
 write down HTML base structure. Note. Mobile friendly first. **/
-// .head {
-//     display: flex;
+{/* <style>
+    .head {
+        display: flex;
+    
+    }
+    .logo{
+        width: 10vw;
+        overflow: hidden;
+    }
+    .logo img{
+        width: 100%;
+    }
+    .nav{
+        width: 60vw;
+        display: flex;
+        justify-content: space-around;
+        list-style-type:none;
+        align-items: center;
+        height: 100%;
+    }
+    .hachi{
+        width: 50vw;
+    }
+    .hachi img{
+        width: 100%;
+    }
+    .maincontent{
+        display: flex;
+    }
+    .aside{
+        width: 50vw;
+    }
+    .item_list{
+        list-style: none;
+    }
+    .footer{
+        text-align: center;
+    }
+</style> */}
+
+
+{/* <body>
+    <div> 
+        <header class="head">
+            <figure class="logo">  <img src="./cat.svg" alt="Hachi logo"></figure>
+            <nav aria-label="Main navigation">
+                <ul class="nav">
+                    <li><a href="#section1">Home</a></li>
+                    <li><a href="#section2">About</a></li>
+                    <li><a href="#section3">Products</a></li>
+                    <li><a href="#section4">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main class="maincontent">
+        <figure class="hachi">
+            <img src="./hachi.png" alt="Hachi, chiikawa cat">
+        </figure>
+        <aside class="aside">
+            <section>item detail</section>
+            <section>
+                <p>item desc list</p>
+                <ul>
+                    <li class="item_list">-item</li>
+                    <li class="item_list">-item</li>
+                    <li class="item_list">-item</li>
+                </ul>
+            </section>
+        </aside>
+        </main>
+        <footer class="footer"> <p>&copy; 2024 Your Company Name. All Rights Reserved.</p></footer>
+    </div>
+</body> */}
+
  
-// }
-// .logo{
-//     width: 40vw;
-//     max-height: 50px;
-//     overflow: hidden;
-// }
-// .logo img{
-//     width: 100%;
-// }
-// .nav{
-//     width: 60vw;
-//     display: flex;
-//     list-style-type:none
-// }
-// .hachi{
-//     width: 50vw;
-// }
-// .hachi img{
-//     width: 100%;
-// }
-// .maincontent{
-//     display: flex;
-// }
-// .aside{
-//     width: 50vw;
-// }
-{/* <header class="head">
-<figure class="logo">  <img src="./hachi.png"></figure>
-<nav>
-    <ul class="nav">
-        <li><a href="#section1">Home</a></li>
-        <li><a href="#section2">About</a></li>
-        <li><a href="#section3">Products</a></li>
-        <li><a href="#section4">Contact</a></li>
-    </ul>
-</nav>
-</header>
-<main class="maincontent">
-<figure class="hachi">
-    <img src="./hachi.png">
-</figure>
-<aside class="aside">
-    <section>item detail</section>
-    <section>
-        <ol>
-            <li>item</li>
-            <li>item</li>
-            <li>item</li>
-        </ol>
-    </section>
-</aside>
-</main>
-<footer> <p>&copy; 2024 Your Company Name. All Rights Reserved.</p></footer> */}

@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hachi say hi.">
+   
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
@@ -35,8 +39,7 @@
  
 }
 .logo{
-    width: 40vw;
-    max-height: 50px;
+    width: 10vw;
     overflow: hidden;
 }
 .logo img{
@@ -45,8 +48,13 @@
 .nav{
     width: 60vw;
     display: flex;
-    list-style-type:none
+    justify-content: space-around;
+    list-style-type:none;
+    align-items: center;
+    height: 100%;
 }
+    
+
 .hachi{
     width: 50vw;
 }
@@ -58,6 +66,12 @@
 }
 .aside{
     width: 50vw;
+}
+.item_list{
+    list-style: none;
+}
+.footer{
+    text-align: center;
 }
 </style>
 <body>
@@ -82,8 +96,8 @@
 
         <div>
             <header class="head">
-                <figure class="logo">  <img src="./hachi.png"></figure>
-                <nav>
+                <figure class="logo">  <img src="./cat.svg" alt="Hachi logo"></figure>
+                <nav aria-label="Main navigation">
                     <ul class="nav">
                         <li><a href="#section1">Home</a></li>
                         <li><a href="#section2">About</a></li>
@@ -93,86 +107,90 @@
                 </nav>
             </header>
             <main class="maincontent">
-                <figure class="hachi">
-                    <img src="./hachi.png">
-                </figure>
-                <aside class="aside">
-                    <section>item detail</section>
-                    <section>
-                        <ol>
-                            <li>item</li>
-                            <li>item</li>
-                            <li>item</li>
-                        </ol>
-                    </section>
-                </aside>
+            <figure class="hachi">
+                <img src="./hachi.png" alt="Hachi, chiikawa cat">
+            </figure>
+            <aside class="aside">
+                <section>item detail</section>
+                <section>
+                   <p>item desc list</p>
+                    <ul>
+                        <li class="item_list">-item</li>
+                        <li class="item_list">-item</li>
+                        <li class="item_list">-item</li>
+                    </ul>
+                </section>
+            </aside>
             </main>
-            <footer> <p>&copy; 2024 Your Company Name. All Rights Reserved.</p></footer>
+            <footer class="footer"> <p>&copy; 2024 Your Company Name. All Rights Reserved.</p></footer>
             
         </div>
 </body>
 <script>
     const user = [
-        { firstName: 'John', lastName: 'Doe', customerID: '102', note: 'VIP', profession: 'engineer' },
-        { firstName: 'Jane', lastName: 'Smith', customerID: '101', note: '', profession: 'freelancer' },
-        { firstName: 'Alice', lastName: '', customerID: '103', note: 'new', profession: 'student' },
-        { firstName: 'Anna', lastName: '', customerID: '155', note: 'new', profession: 'systemAnalytics' },
-        { firstName: 'Cindy', lastName: '', customerID: '150', note: 'new', profession: 'productOwner' },
-        { firstName: 'Jessie', lastName: '', customerID: '150', note: 'new', profession: 'productOwner' }
+        { firstName: 'John', lastName: 'Doe', customerID: 102, note: 'VIP', profession: 'engineer' },
+        { firstName: 'Jane', lastName: 'Smith', customerID: 101, note: '', profession: 'freelancer' },
+        { firstName: 'Alice', lastName: '', customerID: 103, note: 'new', profession: 'student' },
+        { firstName: 'Anna', lastName: '', customerID: 155, note: 'new', profession: 'systemAnalytics' },
+        { firstName: 'Cindy', lastName: '', customerID: 150, note: 'new', profession: 'productOwner' },
+        { firstName: 'Jessie', lastName: '', customerID: 150, note: 'new', profession: 'productOwner' }
     ];
-    function sortUserName(user) {
+
+    const sortUserName = function(user) {
         user.forEach(element => {
-            let format = `${element.firstName}+${element.lastName}+${element.customerID}`
-            console.log('format',format);
-        });
-        
-
-        
-    }
+            let format = element.firstName;
+            if (element.lastName) {
+                format += '+' + element.lastName;
+            }
+            format += '+' + element.customerID;
+            console.log('format', format);
+            });
+    };
     sortUserName(user);
-    function sortByType(user) {
-        //(‘systemAnalytics’ > ‘engineer’ > ‘productOwner’ > ‘freelancer’ > ‘student’’)
-        //設定階層 ‘systemAnalytics’ == 5 ‘engineer’==4 ‘productOwner’==3 ‘freelancer’==2 ‘student’’==1
-        const professionOrder = {
-            'systemAnalytics': 5,
-            'engineer': 4,
-            'productOwner': 3,
-            'freelancer': 2,
-            'student': 1
-        };
+     
+    // function sortByType(user) {
+    //     //(‘systemAnalytics’ > ‘engineer’ > ‘productOwner’ > ‘freelancer’ > ‘student’’)
+    //     //設定階層 ‘systemAnalytics’ == 5 ‘engineer’==4 ‘productOwner’==3 ‘freelancer’==2 ‘student’’==1
+    //     const professionOrder = {
+    //         'systemAnalytics': 5,
+    //         'engineer': 4,
+    //         'productOwner': 3,
+    //         'freelancer': 2,
+    //         'student': 1
+    //     };
 
-        const professionOrderreverse = {
-            5: 'systemAnalytics',
-            4:'engineer',
-            3:'productOwner',
-            2:'freelancer',
-            1:'student'
-        };
+    //     const professionOrderreverse = {
+    //         5: 'systemAnalytics',
+    //         4:'engineer',
+    //         3:'productOwner',
+    //         2:'freelancer',
+    //         1:'student'
+    //     };
 
-        const newUserArray = user.map(person => {
-            return {
-                ...person,  
-                profession: professionOrder[person.profession] || 0 
-            };
-        });
+    //     const newUserArray = user.map(person => {
+    //         return {
+    //             ...person,  
+    //             profession: professionOrder[person.profession] || 0 
+    //         };
+    //     });
 
-        newUserArray.sort((a, b) => {
-            return b.profession - a.profession;
-        });
+    //     newUserArray.sort((a, b) => {
+    //         return b.profession - a.profession;
+    //     });
 
     
-        let userResult = newUserArray.map(person => {
-            return {
-                ...person,  
-                profession: professionOrderreverse[person.profession] 
-            };
-        });
+    //     let userResult = newUserArray.map(person => {
+    //         return {
+    //             ...person,  
+    //             profession: professionOrderreverse[person.profession] 
+    //         };
+    //     });
 
-        console.log('userResult',userResult);
+    //     console.log('userResult',userResult);
         
 
-    }
-    sortByType(user);
+    // }
+    // sortByType(user);
 </script>
 <script>
     let items = [1, 1, 1, 5, 2, 3, 4, 3, 3, 3, 3, 3, 3, 7, 8, 5, 4, 9, 0, 1, 3, 2, 6, 7, 5, 4, 4, 7, 8, 8, 0, 1, 2, 3, 1];
